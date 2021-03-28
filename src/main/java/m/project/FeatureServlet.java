@@ -33,13 +33,12 @@ public class FeatureServlet extends HttpServlet {
         try (Session session = factory.openSession())
         {
 
-            Query query = session.createQuery("FROM Overlay");
-            List<Overlay> lol = query.list();
+            Query<Overlay> query = session.createQuery("FROM Overlay");
 
             JSONArray jsonArray = new JSONArray();
 
             for (Overlay i :
-                    lol) {
+                    query.list()) {
                 JSONObject overlayJsonObject = new JSONObject();
                 overlayJsonObject.put("id", i.getId());
                 overlayJsonObject.put("name", i.getName());
